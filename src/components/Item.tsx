@@ -9,11 +9,16 @@ interface ItemProps {
 
 const Item: React.FC<ItemProps> = ({ cat }) => {
   const { favoriteCats, toogleFavorite } = useAppContext();
+  const isFavorite = favoriteCats.some(_cat => _cat.id === cat.id);
   return (
     <div className='cat-image'>
       <img src={cat.url} alt='cat image' />
       <div className='icons'>
-        <FaHeart color='#f24e1e' className='fill-hearth' size={50} />
+        <FaHeart
+          color='#f24e1e'
+          className={`fill-hearth ${isFavorite ? 'fav' : ''}`}
+          size={50}
+        />
         <FaRegHeart
           onClick={() => toogleFavorite(cat)}
           color='#f24e1e'

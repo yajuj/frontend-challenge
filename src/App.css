@@ -25,6 +25,7 @@
   font-size: 20px;
   line-height: 5px;
   letter-spacing: 1.2px;
+  word-wrap: break-word;
 }
 .nav .nav-item:first-child {
   margin-left: 50px;
@@ -63,6 +64,10 @@ gap: 30px;
   position: absolute;
   transform: translate(-100%,-100%)
 }
+.icons .fav {
+  display: block;
+  
+}
 
 .cat-image:hover .outline-hearth {
   display: block;
@@ -99,5 +104,12 @@ gap: 30px;
 
   to {
       transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 470px){
+  .nav .nav-item {
+    line-height: unset;
+  letter-spacing: unset;
   }
 }
