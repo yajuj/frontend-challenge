@@ -5,6 +5,7 @@ import { useAppContext } from '../context/app-context';
 const Main = () => {
   const { cats, page, setPage } = useAppContext();
   const ref = React.useRef(null);
+
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries, observer) => {
@@ -20,6 +21,7 @@ const Main = () => {
       }
     );
     if (ref.current) observer.observe(ref.current);
+    // eslint-disable-next-line
   }, []);
   return (
     <>
