@@ -10,15 +10,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className='wrapper'>
-        <ScreenComponent />
-      </div>
+      <ScreenComponent />
       {error && <p>{error}</p>}
-      {isLoading && (
-        <div className='spinner-wrapper'>
-          <div className='spinner'></div>
-        </div>
-      )}
+      {isLoading && <div className='spinner'></div>}
     </>
   );
 }

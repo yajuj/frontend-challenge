@@ -21,8 +21,7 @@ const Main = () => {
       }
     );
     if (ref.current) observer.observe(ref.current);
-    // eslint-disable-next-line
-  }, []);
+  }, [incrementPage]);
   return (
     <>
       <ListCats cats={cats} />
