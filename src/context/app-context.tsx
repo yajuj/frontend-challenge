@@ -14,7 +14,7 @@ interface ContextState {
   screen: ScreensEnum;
   setScreen: (str: ScreensEnum) => void;
   toogleFavorite: (cat: Cat) => void;
-  setPage: (pageNumber: number) => void;
+  incrementPage: () => void;
   page: number;
 }
 
@@ -28,7 +28,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [screen, setScreen] = React.useState<ScreensEnum>('main');
-  const [page, setPage] = React.useState<number>(1);
+  let page = 2;
 
   React.useEffect(() => {
     fethData('');
@@ -75,10 +75,9 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     setScreen(str);
   };
 
-  const _setPage = (pageNumber: number) => {
-    setPage(pageNumber);
+  const incrementPage = () => {
     const params = new URLSearchParams();
-    params.append('page', (page + 1).toString());
+    params.append('page', (++page).toString());
     fethData('', params);
   };
 
@@ -93,7 +92,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
         screen,
         setScreen: _setScreen,
         page,
-        setPage: _setPage,
+        incrementPage,
       }}
     >
       {children}

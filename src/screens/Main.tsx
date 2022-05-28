@@ -3,7 +3,7 @@ import ListCats from '../components/ListCats';
 import { useAppContext } from '../context/app-context';
 
 const Main = () => {
-  const { cats, page, setPage } = useAppContext();
+  const { cats, incrementPage } = useAppContext();
   const ref = React.useRef(null);
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ const Main = () => {
       (entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setPage(page + 1);
+            incrementPage();
           }
         });
       },
