@@ -11,20 +11,20 @@ import ListCats from './components/ListCats';
 import ScreenComponent from './Screen';
 
 function App() {
-  const { isLoading, error, cats } = useAppContext();
+  const { isLoading, error } = useAppContext();
 
-  if (isLoading)
-    return (
-      <div className='spinner-wrapper'>
-        <div className='spinner'></div>
-      </div>
-    );
   return (
     <>
       <Navbar />
       <div className='wrapper'>
         <ScreenComponent />
       </div>
+      {error && <p>{error}</p>}
+      {isLoading && (
+        <div className='spinner-wrapper'>
+          <div className='spinner'></div>
+        </div>
+      )}
     </>
   );
 }

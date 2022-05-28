@@ -15,6 +15,8 @@ interface ContextState {
   screen: ScreensEnum;
   setScreen: (str: ScreensEnum) => void;
   toogleFavorite: (cat: Cat) => void;
+  setPage: (pageNumber: number) => void;
+  page: number;
 }
 
 type ScreensEnum = 'main' | 'fav';
@@ -27,17 +29,20 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [screen, setScreen] = React.useState<ScreensEnum>('main');
+  const [page, setPage] = React.useState<number>(1);
 
   React.useEffect(() => {
-    fethData();
+    fethData('');
     loadFavoritesCatsFromLocalStorage();
   }, []);
 
-  const fethData = async () => {
+  const fethData = async (url: string, params?: URLSearchParams) => {
     try {
       setIsLoading(true);
-      const { data } = await api.get<Cat[]>('');
-      setCats(data);
+      const { data } = await api.get<Cat[]>(url, {
+        params,
+      });
+      setCats(_data => [..._data, ...data]);
     } catch (error: any) {
       setError('Произошла ошибка при загрузки картинок');
     } finally {
@@ -71,6 +76,14 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     setScreen(str);
   };
 
+  const _setPage = (pageNumber: number) => {
+    setPage(pageNumber);
+    const params = new URLSearchParams();
+    params.append('page', (page + 1).toString());
+    fethData('', params);
+    console.log('fdsa');
+  };
+
   return (
     <Context.Provider
       value={{
@@ -81,6 +94,8 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
         toogleFavorite,
         screen,
         setScreen: _setScreen,
+        page,
+        setPage: _setPage,
       }}
     >
       {children}
