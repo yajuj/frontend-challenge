@@ -13,18 +13,13 @@ const Item: React.FC<ItemProps> = ({ cat }) => {
   return (
     <div className='cat-image'>
       <img src={cat.url} alt='cat image' />
-      <div className='icons'>
+      <div className='icons' onClick={() => toogleFavorite(cat)}>
         <FaHeart
           color={isFavorite ? '#ff3a00' : '#f24e1e'}
           className={` ${isFavorite ? 'fav' : 'fill-hearth'}`}
           size={50}
         />
-        <FaRegHeart
-          onClick={() => toogleFavorite(cat)}
-          color='#f24e1e'
-          className='outline-hearth'
-          size={50}
-        />
+        <FaRegHeart color='#f24e1e' className='outline-hearth' size={50} />
       </div>
     </div>
   );
