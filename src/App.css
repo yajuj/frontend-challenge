@@ -22,11 +22,15 @@
   padding: 20px 30px;
   margin: 3px;
   color: white;
-  font-size: 20px;
-  line-height: 5px;
-  letter-spacing: 1.2px;
   word-wrap: break-word;
   cursor: pointer;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.25px;
 }
 .nav .nav-item:first-child {
   margin-left: 50px;
@@ -111,6 +115,10 @@
 @media screen and (max-width: 470px){
   .nav .nav-item {
     line-height: unset;
-  letter-spacing: unset;
+    letter-spacing: unset;
+    font-size: 14px;
+  }
+  .nav .nav-item:first-child {
+    margin-left: unset;
   }
 }
