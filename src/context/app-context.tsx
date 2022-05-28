@@ -1,6 +1,5 @@
 import React from 'react';
 import api from '../api/api';
-
 import { Cat } from '../type/Cat';
 
 interface AppContexProviderProps {
@@ -81,7 +80,6 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     const params = new URLSearchParams();
     params.append('page', (page + 1).toString());
     fethData('', params);
-    console.log('fdsa');
   };
 
   return (

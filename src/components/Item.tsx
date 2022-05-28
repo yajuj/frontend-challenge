@@ -15,8 +15,8 @@ const Item: React.FC<ItemProps> = ({ cat }) => {
       <img src={cat.url} alt='cat image' />
       <div className='icons'>
         <FaHeart
-          color='#f24e1e'
-          className={`fill-hearth ${isFavorite ? 'fav' : ''}`}
+          color={isFavorite ? '#ff3a00' : '#f24e1e'}
+          className={` ${isFavorite ? 'fav' : 'fill-hearth'}`}
           size={50}
         />
         <FaRegHeart

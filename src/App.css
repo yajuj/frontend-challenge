@@ -26,21 +26,22 @@
   line-height: 5px;
   letter-spacing: 1.2px;
   word-wrap: break-word;
+  cursor: pointer;
 }
 .nav .nav-item:first-child {
   margin-left: 50px;
 }
 
-.nav .nav-item:hover {
+.nav .nav-item:hover, .nav-item-active{
   background: #1e88e5;
 }
 
 .wrapper .list-cats {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .cat-image > img {
@@ -66,7 +67,7 @@ gap: 30px;
 }
 .icons .fav {
   display: block;
-  
+  z-index: 99;
 }
 
 .cat-image:hover .outline-hearth {

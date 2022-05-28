@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { Cat } from './type/Cat';
-import api from './api/api';
-import { AxiosResponse } from 'axios';
 import Navbar from './components/Navbar';
-
 import { useAppContext } from './context/app-context';
-import ListCats from './components/ListCats';
 import ScreenComponent from './Screen';
 
 function App() {
