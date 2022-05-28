@@ -74,7 +74,7 @@
   z-index: 99;
 }
 
-.cat-image:hover .outline-hearth {
+.cat-image:hover .outline-heart {
   display: block;
 }
 .cat-image:hover {
@@ -87,7 +87,7 @@
  cursor: pointer;
 }
 
-.icons:active .fill-hearth {
+.icons:active .fill-heart {
   display: block; 
 }
 
