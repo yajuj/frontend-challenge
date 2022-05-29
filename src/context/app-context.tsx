@@ -22,13 +22,14 @@ type ScreensEnum = 'main' | 'fav';
 
 const Context = React.createContext<ContextState>({} as ContextState);
 
+let page: number = 0;
+
 const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
   const [cats, setCats] = React.useState<Cat[]>([]);
   const [favoriteCats, setFavoriteCats] = React.useState<Cat[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [screen, setScreen] = React.useState<ScreensEnum>('main');
-  let page: number = 0;
 
   React.useEffect(() => {
     loadFavoritesCatsFromLocalStorage();
