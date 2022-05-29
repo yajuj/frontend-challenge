@@ -38,9 +38,6 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     try {
       setIsLoading(true);
 
-      // const params = new URLSearchParams();
-      // params.append('page', String(++page));
-
       const { data } = await api.get<Cat[]>('', {
         params: { page: ++page },
       });
