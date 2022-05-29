@@ -12,9 +12,9 @@ interface ContextState {
   isLoading: boolean;
   error: string | null;
   screen: ScreensEnum;
-  setScreen: (str: ScreensEnum) => void;
+  setScreen: (screen: ScreensEnum) => void;
   toogleFavorite: (cat: Cat) => void;
-  incrementPage: () => void;
+  fethData: () => void;
   page: number;
 }
 
@@ -28,19 +28,23 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [screen, setScreen] = React.useState<ScreensEnum>('main');
-  let page = 2;
+  let page: number = 0;
 
   React.useEffect(() => {
-    fethData('');
     loadFavoritesCatsFromLocalStorage();
   }, []);
 
-  const fethData = async (url: string, params?: URLSearchParams) => {
+  const fethData = async () => {
     try {
       setIsLoading(true);
-      const { data } = await api.get<Cat[]>(url, {
-        params,
+
+      // const params = new URLSearchParams();
+      // params.append('page', String(++page));
+
+      const { data } = await api.get<Cat[]>('', {
+        params: { page: ++page },
       });
+
       setCats(_data => [..._data, ...data]);
     } catch (error: any) {
       setError('Произошла ошибка при загрузки картинок');
@@ -71,14 +75,8 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     localStorage.setItem('cats', JSON.stringify(catsFromLocalStorage));
   };
 
-  const _setScreen = (str: ScreensEnum) => {
-    setScreen(str);
-  };
-
-  const incrementPage = () => {
-    const params = new URLSearchParams();
-    params.append('page', (++page).toString());
-    fethData('', params);
+  const _setScreen = (screen: ScreensEnum) => {
+    setScreen(screen);
   };
 
   return (
@@ -92,7 +90,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
         screen,
         setScreen: _setScreen,
         page,
-        incrementPage,
+        fethData,
       }}
     >
       {children}

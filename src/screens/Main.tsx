@@ -3,25 +3,23 @@ import ListCats from '../components/ListCats';
 import { useAppContext } from '../context/app-context';
 
 const Main = () => {
-  const { cats, incrementPage } = useAppContext();
+  const { cats, fethData } = useAppContext();
   const ref = React.useRef(null);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            incrementPage();
-          }
-        });
+      (entries, _observer) => {
+        if (entries[0].isIntersecting) {
+          fethData();
+        }
       },
       {
         rootMargin: '100px',
-        threshold: 1,
       }
     );
     if (ref.current) observer.observe(ref.current);
-  }, [incrementPage]);
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <ListCats cats={cats} />
