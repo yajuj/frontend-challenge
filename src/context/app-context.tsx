@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../api/api';
 import { Cat } from '../type/Cat';
 
@@ -25,13 +25,13 @@ const Context = React.createContext<ContextState>({} as ContextState);
 let page: number = 0;
 
 const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
-  const [cats, setCats] = React.useState<Cat[]>([]);
-  const [favoriteCats, setFavoriteCats] = React.useState<Cat[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string | null>(null);
-  const [screen, setScreen] = React.useState<ScreensEnum>('main');
+  const [cats, setCats] = useState<Cat[]>([]);
+  const [favoriteCats, setFavoriteCats] = useState<Cat[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [screen, setScreen] = useState<ScreensEnum>('main');
 
-  React.useEffect(() => {
+  useEffect(() => {
     loadFavoritesCatsFromLocalStorage();
   }, []);
 

@@ -10,9 +10,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <ScreenComponent />
-      {error && <p>{error}</p>}
-      {isLoading && <div className='spinner'></div>}
+      <div className='wrapper'>
+        <ScreenComponent />
+        {error && <p>{error}</p>}
+        {isLoading && <div className='spinner'></div>}
+      </div>
     </>
   );
 }
