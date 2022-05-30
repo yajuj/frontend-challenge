@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ListCats from '../components/ListCats';
 import { useAppContext } from '../context/app-context';
 
@@ -6,7 +6,7 @@ const Main = () => {
   const { cats, fethData } = useAppContext();
   const ref = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries, _observer) => {
         if (entries[0].isIntersecting) {
