@@ -9,7 +9,7 @@ const Navbar = () => {
         onClick={() => setScreen('main')}
         className={screen === 'main' ? 'nav-item-active nav-item' : 'nav-item'}
       >
-        Все котики
+        Все Котики
       </div>
       <div
         onClick={() => setScreen('fav')}

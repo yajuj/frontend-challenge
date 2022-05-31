@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ListCats from '../components/ListCats';
 import { useAppContext } from '../context/app-context';
 
 const Main = () => {
   const { cats, fethData } = useAppContext();
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries, _observer) => {
-        if (entries[0].isIntersecting) {
-          fethData();
-        }
+      entries => {
+        if (entries[0].isIntersecting) fethData();
       },
       {
         rootMargin: '100px',
@@ -20,6 +18,7 @@ const Main = () => {
     if (ref.current) observer.observe(ref.current);
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <ListCats cats={cats} />

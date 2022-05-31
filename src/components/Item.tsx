@@ -10,6 +10,7 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = ({ cat }) => {
   const { favoriteCats, toogleFavorite } = useAppContext();
   const isFavorite = favoriteCats.some(_cat => _cat.id === cat.id);
+
   return (
     <div className='cat-image'>
       <img src={cat.url} alt='cat' />
@@ -24,7 +25,5 @@ const Item: React.FC<ItemProps> = ({ cat }) => {
     </div>
   );
 };
-
-// #ff3a00
 
 export default Item;
