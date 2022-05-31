@@ -22,7 +22,7 @@ const Main = () => {
   return (
     <>
       <ListCats cats={cats} />
-      <div ref={ref}></div>
+      <div ref={ref}/>
     </>
   );
 };
